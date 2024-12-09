@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+</head>
+<body>
+    <h1>Users List</h1>
+    <ul>
+        {% for user in users %}
+            <li>
+                <strong>{{ user.username }}</strong> ({{ user.email }})
+                <a href="/posts/{{ user.id }}">View Posts</a>
+                <a href="/edit_user/{{ user.id }}">Edit</a>
+                <form action="/delete_user/{{ user.id }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No users found</li>
+        {% endfor %}
+    </ul>
+    <a href="/create_user">Create New User</a>
+</body>
+</html>
