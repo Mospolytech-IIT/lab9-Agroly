@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_id }}'s Posts</title>
+</head>
+<body>
+    <h1>Posts by User {{ user_id }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <strong>{{ post.title }}</strong>: {{ post.content }}
+                <a href="/edit_post/{{ post.id }}">Edit</a>
+                <form action="/delete_post/{{ post.id }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No posts found</li>
+        {% endfor %}
+    </ul>
+    <a href="/create_post/{{ user_id }}">Create New Post</a>
+    <br><a href="/">Back to Users</a>
+</body>
+</html>
